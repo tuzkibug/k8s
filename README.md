@@ -10,10 +10,12 @@ for imageName in ${images[@]} ; do
   docker pull mirrorgooglecontainers/$imageName
   docker tag mirrorgooglecontainers/$imageName gcr.io/google_containers/$imageName
   docker rmi mirrorgooglecontainers/$imageName
-done
-```  
+done  
+```
+
+
 注意：  
 *  docker0的IP在安装完docker后需要修改，修改/etc/docker/daemon.json文件  
 *  swapon -s查看swap分区启动情况，swapoff /dev/dm-1关闭swap分区
-*  防火墙必须关闭否则容器之间无法互通，systemctl stop firewalld & systemctl disable firewalld
+*  防火墙必须关闭否则容器之间无法互通，systemctl stop firewalld & systemctl disable firewalld  
 [1]: <https://www.kubernetes.org.cn/3357.html>  
