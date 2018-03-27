@@ -11,5 +11,8 @@ for imageName in ${images[@]} ; do
   docker tag mirrorgooglecontainers/$imageName gcr.io/google_containers/$imageName
   docker rmi mirrorgooglecontainers/$imageName
 done
-```  
+```  
+注意：  
+* docker0的IP在安装完docker后需要修改  
+* swapon -s查看swap分区启动情况，swapoff /dev/dm-1关闭swap分区
 [1]: <https://www.kubernetes.org.cn/3357.html>  
