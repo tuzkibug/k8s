@@ -13,6 +13,6 @@ for imageName in ${images[@]} ; do
 done
 ```  
 注意：  
-** docker0的IP在安装完docker后需要修改  
+** docker0的IP在安装完docker后需要修改，修改/etc/docker/daemon.json文件  
 ** swapon -s查看swap分区启动情况，swapoff /dev/dm-1关闭swap分区
 [1]: <https://www.kubernetes.org.cn/3357.html>  
