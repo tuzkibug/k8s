@@ -26,6 +26,7 @@ cat <<EOF >  /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1  
 net.bridge.bridge-nf-call-iptables = 1  
 EOF  
+sysctl --system  
 * 添加repo  
 由于国外的源被墙了，所以改为用国内的源，阿里的同步较快  
 添加/etc/yum.repo.d/kubernetes.repo文件，内容如下：  
