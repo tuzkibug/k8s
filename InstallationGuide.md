@@ -95,3 +95,11 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documen
 ```  
 等待几分钟，若安装顺利，则执行kubectl get pods --all-namespaces可以看到所有pods是running状态，kubectl get nodes里master是ready状态。  
 
+## 添加node节点  
+* 请确保你的node节点已经安装了必要的软件，参考上文。  
+* 使用刚刚保存的命令，加入节点。  
+```
+kubeadm join --token d08863.609af1bd1056ded5 192.168.122.139:6443 --discovery-token-ca-cert-hash sha256:9da6de47157f738a255f3288d243626a0ba5cfb1a414ce727796aec69f854b6e
+```  
+* 等待几分钟，节点加入完毕！  
+* 在master节点输入kubectl get nodes可看到加入的节点是ready状态，kubectl get pods --all-namespaces检查所有服务pods是running状态。此时集群工作正常！
