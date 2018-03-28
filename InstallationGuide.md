@@ -4,8 +4,11 @@
 * 如下操作均在root用户下，若不使用root用户，请使用具有sudo权限的用户  
 * 关闭selinux  
 vim /etc/sysconfig/selinux  
-找到SELINUX=enforcing，改成SELINUX=disabled  
-* 检查swap  
+找到SELINUX=enforcing，改成SELINUX=disabled  
+* 关闭防火墙  
+防火墙会组织后续的容器间通信，需要提前关闭  
+systemctl stop firewalld && systemctl disabled firewalld  
+* 检查swap  
 kubernetes必须工作在无swap环境，默认安装系统时分区不要分swap分区，如果分了，请手动关闭该分区  
 swapon -s检查是否有分区，假如有使用swapoff /dev/xxx来关闭分区  
 * sshd设置为keepalive  
