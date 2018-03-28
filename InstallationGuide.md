@@ -16,7 +16,7 @@ swapon -s检查是否有分区，假如有使用swapoff /dev/xxx来关闭分区
 echo "ClientAliveInterval 10" >> /etc/ssh/sshd_config  
 echo "TCPKeepAlive yes" >> /etc/ssh/sshd_config  
 systemctl restart sshd.service  
-* 重启机器   
+* 重启机器  
 sync   
 reboot   
 
