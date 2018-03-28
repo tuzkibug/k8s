@@ -38,4 +38,7 @@ gpgcheck=0  
 * 安装kube相关组件  
 所有的机器均需要安装  
 yum install -y kubelet kubeadm kubectl  
-systemctl enable kubelet && systemctl start kubelet  
+systemctl enable kubelet && systemctl start kubelet  
+## 初始化master节点  
+* 准备需要使用的镜像  
+由于初始化时会创建各类型的服务容器，容器镜像是从gcr.io获取的，该网站是google旗下的镜像站，国内屏蔽。幸好有大神在同步这个容器镜像库，并传递到docker.io，方便使用，我们需要先下载下来备用，使用如下脚本即可下载镜像，同时把名称改为gcr.io的镜像名，骗过安装脚本。  
