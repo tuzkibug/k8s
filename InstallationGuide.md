@@ -68,6 +68,6 @@ kubectl是使用kubernetes的命令行工具，但不是默认安装完即可用
 export KUBECONFIG=/etc/kubernetes/admin.conf  
 * 安装网络组件  
 kubernetes需要安装网络插件来使能网络功能，社区有不少推荐，flanel,calico,等等，这里选择官方推荐的flannel。执行如下命令，自动安装。  
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml  
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml    
 等待几分钟，若安装顺利，则执行kubectl get pods --all-namespaces可以看到所有pods是running状态，kubectl get nodes里master是ready状态。  
 
