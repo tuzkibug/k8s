@@ -42,3 +42,22 @@ systemctl enable kubelet && systemctl start kubelet  
 ## 初始化master节点  
 * 准备需要使用的镜像  
 由于初始化时会创建各类型的服务容器，容器镜像是从gcr.io获取的，该网站是google旗下的镜像站，国内屏蔽。幸好有大神在同步这个容器镜像库，并传递到docker.io，方便使用，我们需要先下载下来备用，使用如下脚本即可下载镜像，同时把名称改为gcr.io的镜像名，骗过安装脚本。  
+```
+#!/bin/bash
+images=(kube-proxy-amd64:v1.9.6 kube-scheduler-amd64:v1.9.6 kube-controller-manager-amd64:v1.9.6 kube-apiserver-amd64:v1.9.6 etcd-amd64:3.1.11 pause-amd64:3.0 kubernetes-dashboard-amd64:v1.8.3 k8s-dns-sidecar-amd64:1.14.7 k8s-dns-kube-dns-amd64:1.14.7 k8s-dns-dnsmasq-nanny-amd64:1.14.7)
+for imageName in ${images[@]} ; do
+  docker pull mirrorgooglecontainers/$imageName
+  docker tag mirrorgooglecontainers/$imageName gcr.io/google_containers/$imageName
+  docker rmi mirrorgooglecontainers/$imageName
+done  
+```  
+* 初始化init  
+最简单的初始化即直接在master节点执行kubeadm init，后面可以加各类参数。在这里我们指定一下版本和pod的IP池大小。  
+kubeadm init --kubernetes-version=v1.9.0 --pod-network-cidr=10.200.0.0/16  
+有其他参数需求请参考kubeadm官方文档  
+过程中kubeadm执行了一系列的操作，包括一些pre-check，生成ca证书，安装etcd和其它控制组件等。  
+稍等几分钟，当出现最下面的这行kubeadm join时，初始化就算结束了。kubeadm是用来让别的node加入集群的，请保存好这一行内容，这是我们之后让node加入集群的凭据，一会儿会用到。  
+* 使能kubectl  
+kubectl是使用kubernetes的命令行工具，但不是默认安装完即可用，需要配置。  
+export KUBECONFIG=/etc/kubernetes/admin.conf  
+
