@@ -2,7 +2,7 @@
 ## 准备工作  
 * 安装必要的辅助工具，比如vim等  
 * 如下操作均在root用户下，若不使用root用户，请使用具有sudo权限的用户  
-* 关闭selinux  
+* 关闭selinux    
 vim /etc/sysconfig/selinux  
 找到SELINUX=enforcing，改成SELINUX=disabled  
 * 关闭防火墙  
