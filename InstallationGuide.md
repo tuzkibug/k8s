@@ -60,7 +60,9 @@ kubeadm init --kubernetes-version=v1.9.0 --pod-network-cidr=10.200.0.0/16  
 有其他参数需求请参考kubeadm官方文档  
 过程中kubeadm执行了一系列的操作，包括一些pre-check，生成ca证书，安装etcd和其它控制组件等。  
 稍等几分钟，当出现最下面的这行kubeadm join时，初始化就算结束了。kubeadm是用来让别的node加入集群的，请保存好这一行内容，这是我们之后让node加入集群的凭据，一会儿会用到。  
-初始化过程中如果报错，或者失败，可以使用kubeadm reset重置环境。后续想重新安装也可以使用。  
+kubeadm join --token d08863.609af1bd1056ded5 192.168.122.139:6443 --discovery-token-ca-cert-hash sha256:9da6de47157f738a255f3288d243626a0ba5cfb1a414ce727796aec69f854b6e  
+这一行只有24小时试用期，请注意时间。  
+初始化过程中如果报错，或者失败，可以使用kubeadm reset重置环境。后续想重新安装也可以使用。  
 * 使能kubectl  
 kubectl是使用kubernetes的命令行工具，但不是默认安装完即可用，需要配置。  
 export KUBECONFIG=/etc/kubernetes/admin.conf  
