@@ -14,7 +14,7 @@ systemctl stop firewalld && systemctl disabled firewalld
 ```  
 * 检查swap  
 kubernetes必须工作在无swap环境，默认安装系统时分区不要分swap分区，如果分了，请手动关闭该分区  
-swapon -s检查是否有分区，假如有使用swapoff /dev/xxx来关闭分区  
+swapon -s检查是否有分区，假如有使用swapoff /dev/xxx来关闭分区，不想检查的话直接swapoff -a也行  
 * sshd设置为keepalive  
 为方便安装，将ssh功能设置为keepalive保持连接  
 ```
