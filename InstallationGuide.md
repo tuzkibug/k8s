@@ -73,7 +73,7 @@ done
 * 初始化init  
 最简单的初始化即直接在master节点执行kubeadm init，后面可以加各类参数。在这里我们指定一下版本和pod的IP池大小。  
 ```
-kubeadm init --kubernetes-version=v1.9.0 --pod-network-cidr=10.200.0.0/16 
+kubeadm init --kubernetes-version=v1.9.6 --pod-network-cidr=10.200.0.0/16 
 ```  
 有其他参数需求请参考kubeadm官方文档  
 过程中kubeadm执行了一系列的操作，包括一些pre-check，生成ca证书，安装etcd和其它控制组件等。  
